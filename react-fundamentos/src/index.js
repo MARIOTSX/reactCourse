@@ -18,12 +18,47 @@ function getInfo(user){
 class TarjetaFruta extends React.Component{
  
  constructor(){
-   super();
+    
 
+   const METHODS =[
+     'agregar',
+     'quitar',
+     'reset'
+   ]
+
+   METHODS.forEach((method)=>{
+     this[method] = this[method].bind(this)
+   })
+   super();
    this.state = {
      cantidad: 10
    }
- }
+ 
+ } 
+
+agregar(){
+   this.setState(
+     {
+       cantidad: this.state.cantidad+1
+     }
+   )
+}
+
+quitar(){
+  this.setState(
+    {
+      cantidad: this.state.cantidad-1
+    }
+  )
+}
+
+reset(){
+  this.setState(
+    {
+      cantidad: this.state.cantidad=0
+    }
+  )
+}
 
   render(){
     return (
@@ -31,12 +66,9 @@ class TarjetaFruta extends React.Component{
       <h3>{this.props.name}</h3>
       <hr/>
     <div> Cantidad: {  this.state.cantidad }</div>
-      <button onClick={()=>{
-        this.setState({cantidad: this.state.cantidad+1})
-      }
-      }>
-        Agregar
-      </button>
+      <button onClick={this.agregar}>   +  </button>
+      <button onClick={this.quitar}>   -  </button>
+      <button onClick={this.reset}>   Limpiar  </button>
       <p>{this.props.price}</p>
       <p>This is the real shit</p>
     </div>
