@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { Component } from 'react'
 import TarjetaFruta from './componentes/TarjetaFruta'
 
 /*
@@ -17,28 +17,26 @@ const styles={
   padding:'1em',
   boxSizing:'border-box'
 }
-class App extends Component{
 
+class App extends Component{
   state={
     x:0,
     y:0
   }
 
-  altera=(event)=>{
-     
-    alert("Hola alterno");
+  altera = (event)=> {
     this.setState({
-    x: event.setClientX,
-    y: event.setClientY
+    x: event.clientX,
+    y: event.clientY
     }
-    )
-   
+    ) 
   }
 
   render(){
     return(
-      <div style={styles} {
-        onMouseMove(this.altera)}
+      <div 
+      style={styles} 
+      onMouseMove={this.altera}
       >    
        
           <div>
@@ -48,13 +46,11 @@ class App extends Component{
           <div>
             y: {this.state.y}
           </div>
-
-        </p>
+        
       </div>
+     
     )
-  }
+  } 
 }
 
-
-
-export default App;
+export default App
